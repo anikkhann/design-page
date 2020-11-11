@@ -19,7 +19,7 @@
     color: red;
     position: absolute;
     top:40%;
-
+    cursor: pointer;
     text-align: center;
     width: 100%;
     font-size: 25px;

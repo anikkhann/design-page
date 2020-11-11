@@ -5,8 +5,8 @@ import './Home.css';
 import Header from '../Header/Header';
 import Button from 'react-bootstrap/Button'
 import ModalForm from '../ModalForm/ModalForm';
-import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
-
+import {Resizable} from 're-resizable' 
+import Draggable from 'react-draggable';
 const Home = () => {
     const [text, setText] = useContext(UserContext);
     console.log(text);
@@ -19,9 +19,7 @@ const Home = () => {
         setIsOpen(false);
     }
 
-    const onEnd = (result) =>{
-        console.log(result)
-    }
+
 
     return (
         <div className="background">
@@ -34,44 +32,24 @@ const Home = () => {
                     <div className='banner '>
 
                         <img src={image} alt="ops sorry!!" />
-                        <DragDropContext onDragEnd={onEnd}>
-                            <Droppable droppableId="123">
-                                {(provided, snapshot) => (
-                                    <div ref={provided.innerRef()}>
                                           
-                                        <Draggable
-                                          
-                                        >
-                                            {(provided, snapshot) =>(
-                                                <div  ref={provided.innerRef()}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                >
-                                                    
-                                                    <div  className='heading'>
-                                                    
-                                                        {text.name}
-                                                    
-                                                 
-                                                    </div>
+                        <Draggable >
+                              
+                            <div className='heading' >
+                                   
+                                {text.name}
+                            </div>                                
+                        </Draggable>
                                                 
 
-                                                       
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                        
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                       
-                        </DragDropContext>
                     </div>
-
-
+                                          
+                                        
                 </div>
+
+
             </div>
+          
             <div className="text-center mt-3">
                 <Button onClick={openModal} variant="outline-success">Add Text</Button>
                 < ModalForm modalIsOpen={modalIsOpen} closeModal={closeModal}></ModalForm>
